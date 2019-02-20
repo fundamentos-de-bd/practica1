@@ -1,7 +1,17 @@
-\documentclass[10pt,onecolumn]{article}
+\documentclass[10pt]{article}
 \usepackage[utf8]{inputenc}
-%% Language-specific
 \usepackage[spanish]{babel}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{diagbox}
+\usepackage{booktabs}
+\usepackage{anysize} 
+\usepackage{hyperref}
+\usepackage{helvet}
+\renewcommand\refname{Referencias}
+\marginsize{2cm}{2cm}{2.0cm}{2cm}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{float}
 
 %% Graphics
 \usepackage{graphicx}
@@ -10,70 +20,153 @@
 \usepackage{multirow}
 \usepackage{caption}
 
-%%Math
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{hyperref}
-\usepackage{mathrsfs}
-\usepackage{stfloats}
-\usepackage{lipsum}
 
-%% Misc
-\usepackage{placeins}
-\usepackage{datatool}
-\usepackage{multicol}
-\usepackage{anysize}
-\usepackage{enumerate}
-
-\marginsize{1.35cm}{1.35cm}{1.4cm}{1.4cm}
-
-%% Authors' list packages
-\usepackage[affil-it]{authblk}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=cyan,
+	citecolor=blue
+}
 
 
 
 
 \begin{document}
-%% Authors' list
+	\title{Fundamentos de Bases de Datos \\
+		Practica 1 \\
+		Manual de instalación y configuración de Oracle DB} 
+	\author{}
+	\date{19 de febrero del 2019}
+	\maketitle
 
-\begin{center}
-{FUNDAMENTOS DE BASE DE DATOS 2019-2 \\PRACTICA 1}
-\end{center}
-\vspace{0.2cm}
-\begin{center}
-{\small{INTEGRANTES:\\Díaz Gómez Silvia\\ Eugenio Aceves Isaac \\ Quiroz Castañeda Edgar}}
-\end{center}
 
-%\centering{Fecha de entrega: 19 de Febrero}
-\begin{enumerate}
-	\item 
-	\item 
-	\item \bf{Preguntas}\\
+
+
+	\section{Instalación nativa de Oracle Database 12c}
+	
+	Para comenzar con la instalación primero se debera descargar Oracle Database 12c en la página oficial de Oracle  \url{http://www.oracle.com/technetwork/database/enterprise-edition/
+		downloads/index.html}, para poder descargarlo se deberá crear una cuenta en la siguiente página \url{http://www.oracle.com} e ingresar nuestros datos.
+	\begin{enumerate}
+		\item Una vez descargado se descomprime el archivo zip, luego se abre  la carpeta que se descomprimio, ahí se encontrará el archivo ejecutable setup.exe que es el instalador de el SMBD, se le da click derecho y se ejecuta como administrador.\\
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.6 \textwidth]{im_setup}
+			\caption{Archivos que se encuentran en la carpeta que se descomprimio.}
+		\end{figure}
+		
+		
+		\item Despues de inicializado el programa se abrirá la siguiente ventana, en esta ventana se proporcionara un correo electronico si es que se desea recibir correos relacionados con información sobre problemas de seguridad de Oracle sino se omitará la opción y continuaremos, si no se marca la opción al dar en siguiente aparecera una advertencia, se le da click en "si" para continuar con la instalación.\\  
+		
+		\begin{figure}[H]
+			\centering
+		\includegraphics[width=0.6 \textwidth]{im_1}
+		\caption{Ventana de configuración de actualizaciones de seguridad.}
+	    \end{figure}
+		
+		\item En el siguiente paso se deberá indicar el tipo de instalación, en este caso se deberá seleccionar Crear y Configurar una base de datos y se le da en siguiente.\\
+		
+		\begin{figure}[H]
+			\centering
+		\includegraphics[width=0.6 \textwidth]{im_2}
+		\caption{Ventana para seleccionar opción de instalación}
+		\end{figure}
+		
+		\item En la siguiente ventana se indicará en donde se quiere crear y configurar la base de datos, se tienen dos opciones : la Clase Escritorio y la Clase Servidor, se elegirá la clase Escritorio porque se hará desde nuestra computadora personal. Continuaremos con la isntalación en siguiente.\\
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.6 \textwidth]{im_3}
+			\caption{Venatana para seleccionar la clase de sistema a instalar. }
+		\end{figure}
+		
+		
+		\item Para este paso se tiene que especificar el tipo de usuario, en este caso se selecciona la ultima opción que es la cuenta que viene por defecto en nuestra computadora, al dar en siguiente aparecera una ventana de advertencia donde se indicará que "si" para continuar.
+		
+		\begin{figure}[H]
+			\centering
+		\includegraphics[width=0.6 \textwidth]{im_4}
+		\caption{Ventana para especificar el usuario del directorio raíz de Oracle.}
+	    \end{figure}
+		
+		\item La siguiente ventana conrresponde a la parte de la instalación tipica donde se muestra: el directorio base de Oracle que se define por defecto, la ubicaión del sotfware,la ubicación de los archivos que son necesarios para cada base de datos creada en el SMBD, la edición de base de datos que en este caso será la edición Enterprise Edition 6GB, nombre de la Base de Datos Global que puede ser modificada al igual que que el nombre de Base de Datos conexión. En contraseña se deberá poner una contraseña que será la contraseña del administrador de la base de datos global. \\
+		
+		\begin{figure}[H]
+			\centering
+		\includegraphics[width=0.6 \textwidth]{im_5}
+		\caption{Ventana de configuración de instalación típica.}
+    	\end{figure}
+		
+		\item Despúes de darle en siguiente se comprobara si se tiene los requisitos necesarios para seguir con la instalación,\\
+		
+		\begin{figure}[H]
+			\centering
+		\includegraphics[width=0.6 \textwidth]{im_6}
+		\caption{Ventana que muestra que se realizan comprobaciones de requisitos mínimos de instalación. }
+	    \end{figure}
+	    
+		\item La siguiente ventana despliega el resumen de la instalación siempre y cuando se hayan cumplido con los requisitos necesarios, se le da en instalar y comenzará con el proceso de instalación. \\
+		
+		\begin{figure}[H]
+			\centering
+		\includegraphics[width=0.6 \textwidth]{im_7}
+		\caption{Ventana que muestra el resumen de la instalación.}
+	    \end{figure}
+		
+		
+		\item Se espera a que termine el proceso de instalación que tardará algunos minutos, antes de terminar nos aprecerá una alerta de seguridad, se le da en permitir acceso y continuará con la instalación.\\
+		
+		\begin{figure}[H]
+			\centering
+		\includegraphics[width=0.6 \textwidth]{im_8}
+		\caption{Ventana que muestra el avance de la instalación.}
+	    \end{figure}
+		
+		\item Finalmente, se muestra la siguiente ventana cuando el programa termino su instalación.\\
+		
+		\begin{figure}[H]
+			\centering
+		\includegraphics[width=0.6 \textwidth]{im_10}
+		\caption{La ultima ventana que se muestra para indicar que la instalación fue correcta.}
+	    \end{figure}
+	\end{enumerate}
+	
+	
+	\section{Haciendo la conexion de la base de datos a SQL Developer}
+	
+	Como se quiere realizar la conexión de la base de datos por medio de SQL Developer, se abre SQL Developer que viene por defecto en la instalación de Oracle Database,\\
+	\begin{figure}[H]
+		\centering
+	\includegraphics[width=0.6 \textwidth]{im_con_1}
+	\caption{SQL Developer}
+    \end{figure}
+	
+	Una vez abierto SQL Developer, en el apartado de conexiones se le dará click en el boton nueva conexión, en seguida se abrirá una ventana donde habrá que escribir el nombre de la conexión (nombre que se le quiera dar), el nombre de usuario que en este caso será SYSTEM y la contraseña que pusimos en el punto 6 de la sección de instalación. Además el tipo de conexión sera de tipo básico, una nota importante, si se modificó el nombre de la base de datos global en el punto 6 de la instalación, se seleccionará Nombre de Servicio y se deberá escribir el nombre que se le asignó a la base de datos global.\\
+	\begin{figure}[H]
+		\centering
+	\includegraphics[width=0.6 \textwidth]{im_c_2}
+	\caption{Creando una nueva conexión.}
+    \end{figure}
+	
+	De esta manera tendremos nuestra conexión.
+	\begin{figure}[H]
+		\centering
+	\includegraphics[width=0.4 \textwidth]{im_c_3}
+	\caption{Conexión creada.}
+    \end{figure}
+	
+	\section{Preguntas}
 	\begin{enumerate}
 		\item ¿Qué otros SMBD existen actualmente en el mercado? ¿Cuáles son las principales diferencias con Oracle DB?\\
 		R: MySQL, PostgreSQL, SQLServer
         \item ¿Cuáles son las diferencias entre las ediciones 10g, 11g y 12c?\\
         \item Menciona al menos tres características incluidas en la versión Oracle DB 12c EE\\
 	\end{enumerate}
-\end{enumerate}
 
-https://apex.oracle.com/database-features/
-
-\vspace{1 cm}
-
-{\bf }
-
-\vspace{0.2cm}
-
-
-
-
-
-
-
-
-
-
+\begin{thebibliography}{}
+	\bibitem{}Oracle. URL: \url{https://apex.oracle.com/database-features/}
+\end{thebibliography}
 
  
 \end{document}
