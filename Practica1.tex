@@ -159,11 +159,23 @@
 	\section{Preguntas}
 	\begin{enumerate}
 		\item ¿Qué otros SMBD existen actualmente en el mercado? ¿Cuáles son las principales diferencias con Oracle DB?\\
-		R: MySQL, PostgreSQL, SQLServer
+		R: MySQL, PostgreSQL, SQLServer, Microsoft SQL Server, MongoDB, Redis.\\
+		Todos son Relacionales/Multimodelo salvo por Redis (Key-value) y MongoDB
+		(Document-based).
+		Aparte, PostgreSQL, MySQL, MongoDB y Redis son Open Source.
+		Viendo tablas de información en linea comparando los sistemas manejadores, haya
+		una gran variación en cosas que van desde la capacidad de representar tipos
+		(algunos SMBD pueden usar imágenes y geometría?), el modo en el que se puede
+		parrticionar/organizar, operaciones de conjuntos que soportan y otras ventajas en
+		seguridad/portabilidad/limites.\\ 
+		No obstante, aunque Oracle no cuenta con cosas excentricas como el soporte de
+		imágenes, su característica principal es que realmente incluye todo; es decir, tiene
+		presente de algun u otro modo todas las funciones de SMBD generales.
+		
         \item ¿Cuáles son las diferencias entre las ediciones 10g, 11g y 12c?\\
 		En cada nueva versión de SMBD de Oracle, se incluyen una gran cantidad
 		de nuevas características. Algunas de las nuevas características en 
-		cada una de esas versiones son 
+		cada una de esas versiones son: 
 		\begin{itemize}
 			\item {
 				10g \\
@@ -186,8 +198,10 @@
 				Manejo declarativo de BLOBS(objetos binarios de gran tamaño), lo que
 				facilita mucho manipularlos.
 			}
-			\item {
-				12c \\
+			\item {12c \\
+                Versión diseñada para la 'nube' (designación c).
+                Implementa la arquitectura \textit{multitenant}.\\
+                Incluye un almacenamiento por columnas In-memory.
 				Se anadió el soporte para JSON  y para GeoJASON como objetos 
 				nativos para permitir y se permite operaciones espaciales 
 				(spatial operations).\\
@@ -198,12 +212,27 @@
 				}
 		\end{itemize}
         \item Menciona al menos tres características incluidas en la versión Oracle DB 12c EE\\
+		\begin{itemize}
+			\item {
+                Arquitectura Multitenant \\
+                Permite manejar la base de datos como una CDB (Container Database) la cual incorpora multiples PDB (Pluggable Database). Esto mejora la versatilidad del sistema manejador y resulta útil para diseñar sistemas que dependen entre sí y se conectan a través de la nube. 
+			}
+			\item {
+                Soporte nativo de JSON \\
+                JSON (JavaScript Object Notation) es un formato de texto con el cual se pueden guardar los datos de manera que es posible reconstuirlos como objetos de Java; manteniendo atributos y clases. Es fácil de leer y crear, tanto como para humanos como computadoras.
+			}
+			\item {
+                Almacenamiento In-Memory de columnas \\
+                Este tipo de almacenamiento esta presente en otros manejadores de BD a distintos niveles. En el caso de la versión 12c, mantiene las columnas en la memoria RAM para permitir una velocidad de respuesta a consultas dentro de estas más rápida (Column oriented Database).
+			}
+		\end{itemize}
 	
 	\end{enumerate}
 
 \begin{thebibliography}{}
 	\bibitem{}Oracle. URL: \url{https://apex.oracle.com/database-features/}
 	\bibitem{}Oracle. URL: \url{https://www.oracle.com/technetwork/articles/sql/index-082320.html}
+	\bibitem{}Oracle, \textit{'Brief History of Oracle Database'}. URL: \url{https://docs.oracle.com/en/database/oracle/oracle-database/12.2/cncpt/introduction-to-oracle-database.html#GUID-35C20601-E266-486E-987B-7F355DB10DD4}
 \end{thebibliography}
 
  
